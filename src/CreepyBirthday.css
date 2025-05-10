@@ -221,7 +221,6 @@ body {
   z-index: 2;
   opacity: 0.3;
 }
-/* Добавьте эти стили в ваш CreepyBirthday.css */
 
 .eyes-container {
   position: relative;
@@ -275,7 +274,6 @@ body {
     box-shadow: 0 0 30px red, 0 0 45px red;
   }
 }
-/* Добавить в CSS */
 .blood-drips {
   position: fixed;
   top: 0;
@@ -299,7 +297,7 @@ body {
   stroke-linecap: round;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: drip-fall 4s forwards;
+  animation: drip-fall 20s forwards;
 }
 
 /* Анимации */
