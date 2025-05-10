@@ -1,0 +1,459 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #0f0;
+  font-family: "Courier New", monospace;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.creepy-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.creepy-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  z-index: 2;
+}
+
+.typing-text {
+  border-right: 0.15em solid #0f0;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 90vw;
+  letter-spacing: 0.1em;
+  animation: blink-caret 0.75s step-end infinite;
+  font-size: clamp(1rem, 5vw, 2rem);
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #0f0;
+  }
+}
+
+.flicker-text {
+  animation: flicker 3s infinite alternate;
+  margin-top: 20px;
+}
+.flicker-text,
+.hidden-text {
+  max-width: 90vw;
+  word-break: break-word;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+@keyframes flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 0.99;
+    text-shadow: 0 0 10px #0f0;
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
+.hidden-text {
+  opacity: 0;
+  animation: reveal 5s 10s forwards;
+  margin-top: 15px;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 0.8;
+  }
+}
+
+.creepy-image {
+  margin-top: 40px;
+  width: 200px;
+  height: 100px;
+}
+
+.eyes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  transition: transform 0.1s ease-out;
+}
+
+.eye {
+  width: 30px;
+  height: 30px;
+  background: red;
+  border-radius: 50%;
+  box-shadow: 0 0 15px red;
+  animation: eyes-blink 5s infinite;
+}
+
+@keyframes eyes-blink {
+  0%,
+  48%,
+  52%,
+  100% {
+    height: 30px;
+    margin-top: 0;
+  }
+  50% {
+    height: 5px;
+    margin-top: 12px;
+  }
+}
+
+.counter {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 12px;
+  opacity: 0.6;
+  color: #0f0;
+  z-index: 3;
+}
+
+.glitch-effect {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-5px, 5px);
+  }
+  40% {
+    transform: translate(-5px, -5px);
+  }
+  60% {
+    transform: translate(5px, 5px);
+  }
+  80% {
+    transform: translate(5px, -5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.noise-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABGSURBVGhD7cExAQAwDMCg+zfdm1gIO3mQl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5cXeQHK1gEJ4k0wJQAAAABJRU5ErkJggg==");
+  opacity: 0.3;
+  pointer-events: none;
+  animation: noise 0.2s infinite;
+  z-index: 1;
+}
+
+@keyframes noise {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -5%);
+  }
+  30% {
+    transform: translate(3%, -3%);
+  }
+  50% {
+    transform: translate(-5%, 5%);
+  }
+  70% {
+    transform: translate(3%, 3%);
+  }
+  90% {
+    transform: translate(-5%, -5%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.static-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.3;
+}
+/* Добавьте эти стили в ваш CreepyBirthday.css */
+
+.eyes-container {
+  position: relative;
+  margin-top: 40px;
+  width: 200px;
+  height: 100px;
+  opacity: 0;
+  animation: eyes-appear 3s 8s forwards;
+}
+
+@keyframes eyes-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: brightness(0);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.eyes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  transition: transform 0.1s ease-out;
+}
+
+.eye {
+  width: 30px;
+  height: 30px;
+  background: red;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #0f0;
+  animation: eyes-blink 5s infinite, eyes-glow 2s infinite alternate;
+}
+
+@keyframes eyes-glow {
+  from {
+    box-shadow: 0 0 15px red;
+  }
+  to {
+    box-shadow: 0 0 30px red, 0 0 45px red;
+  }
+}
+/* Добавить в CSS */
+.blood-drips {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  animation: blood-appear 12s 8s forwards;
+}
+
+.blood-drips svg {
+  width: 100%;
+  height: 100%;
+}
+
+.blood-path {
+  stroke-width: 0.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drip-fall 4s forwards;
+}
+
+/* Анимации */
+@keyframes blood-appear {
+  to {
+    opacity: 0.8;
+  }
+}
+
+@keyframes drip-fall {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Эффект капель (опционально) */
+.blood-drips::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to top, rgba(138, 3, 3, 0.8), transparent);
+  opacity: 0;
+  animation: drip-pool 3s 12s forwards;
+}
+
+@keyframes drip-pool {
+  to {
+    opacity: 0.5;
+    height: 50px;
+  }
+}
+.creepy-container::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 3px 3px;
+  z-index: 15;
+  pointer-events: none;
+  animation: crt-flicker 0.15s infinite alternate;
+}
+
+@keyframes crt-flicker {
+  0% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fullscreen-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+  transition: opacity 0.1s;
+}
+
+.fullscreen-flash.active {
+  opacity: 0.7;
+}
+/* Эффект тумана */
+.fog-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  animation: fog-appear 5s 8s forwards;
+}
+
+.fog-layer {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100"><filter id="fogFilter"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0"/></filter><rect width="100%" height="100%" filter="url(%23fogFilter)" fill="rgba(0,0,0,0.1)"/></svg>');
+  animation: fog-move 60s linear infinite;
+}
+
+.fog-layer-1 {
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  animation-duration: 60s;
+  animation: fog-move 60s linear infinite, fog-pulse 8s ease-in-out infinite;
+}
+@keyframes fog-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+.fog-layer-2 {
+  top: 50px;
+  left: -100%;
+  opacity: 0.4;
+  animation-duration: 45s;
+  animation-delay: 10s;
+}
+
+@keyframes fog-appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fog-move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.glitch-text {
+  color: #f00;
+  position: relative;
+  animation: glitch-text 1s infinite;
+}
+
+@keyframes glitch-text {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
