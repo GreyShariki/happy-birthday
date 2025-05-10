@@ -379,7 +379,7 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 100;
-  opacity: 0;
+  opacity: 0.5;
   animation: fog-appear 5s 8s forwards;
 }
 
